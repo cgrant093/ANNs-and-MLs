@@ -1,5 +1,7 @@
 import numpy as np
 import scipy.special
+import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 # neural network class definition
 class neuralNetwork:
@@ -15,8 +17,7 @@ class neuralNetwork:
         # set learning rate
         self.lr = learning_rate
         
-        # NN weights
-        # weights matrices are w_i_j, from node i to node j 
+        # NN weights matrices are w_i_j, from node i to node j 
         self.wih = np.random.normal(0.0, pow(self.hnodes,-0.5), (self.hnodes,self.inodes))
         self.who = np.random.normal(0.0, pow(self.onodes,-0.5), (self.onodes,self.hnodes))
         
@@ -66,12 +67,69 @@ class neuralNetwork:
         
         return final_outputs
 
+
 # parameters for NN
-input_nodes = 3
-hidden_nodes = 3
-output_nodes = 3
+input_nodes = 784
+hidden_nodes = 100
+output_nodes = 10
 learning_rate = 0.3
 
 # create NN
 n = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
+
+
+# load training and testing data
+training_data_file = open("mnist_dataset/mnist_train.csv", "r")
+training_data_list = training_data_file.readlines()
+training_data_file.close()
+
+test_data_file = open("mnist_dataset/mnist_test.csv", "r")
+test_data_list = test_data_file.readlines()
+test_data_file.close()
+
+# plot one example of the training data
+#all_values = data_list[0].split(',')
+#image_array = np.asfarray(all_values[1:]).reshape((28,28))
+#plt.imshow(image_array, cmap='Greys', interpolation='None')
+#plt.show()
+
+
+print("\nNeural Network training progress:")
+
+# training the NN 
+for record in tqdm(training_data_list):
+    # split the record by the ',' commas
+    all_values = record.split(',')
+    
+    # scale and shift the inputs
+    inputs = (np.asfarray(all_values[1:])/255.0 * 0.99) + 0.01 
+    
+    #creates the target output values (also scaled)
+    targets = np.zeros(output_nodes) + 0.01
+    
+    #all_vaules[0] is the target label for this record
+    targets[int(all_values[0])] = 0.99
+    
+    #train the network
+    n.train(inputs, targets)
+    
+    pass
+    
+    
+# testing the NN
+
+# get the first test record, print and plot it
+all_values = test_data_list[0].split(',')
+print("\nTest value is: ", all_values[0])
+
+#image_array = np.asfarray(all_values[1:]).reshape((28,28))
+#plt.imshow(image_array, cmap='Greys', interpolation='None')
+#plt.show()
+
+#query the NN
+test = n.query((np.asfarray(all_values[1:])/255.0 * 0.99) + 0.01)
+print("Trained Neural Network output is:\n", np.round(test, 3))    
+
+
+
 
