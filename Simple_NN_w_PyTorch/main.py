@@ -16,6 +16,10 @@ Sequential: a simple stack of layers
     Each layer has only one input tensor and one output tensor
 Linear: applies a linear transformation to the incoming data
 ReLU: applies the rectified linear unit function element-wise
+
+
+
+***** this one doesn't actually work correctly! *****
 """
 class NeuralNetwork(nn.Module):
     def __init__(self):
