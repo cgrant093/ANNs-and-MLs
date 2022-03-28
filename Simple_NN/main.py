@@ -69,7 +69,7 @@ class neuralNetwork:
 
 
 # parameters for NN
-input_nodes = 784
+input_nodes = 784   # = 28*28
 hidden_nodes = 100
 output_nodes = 10
 learning_rate = 0.3
