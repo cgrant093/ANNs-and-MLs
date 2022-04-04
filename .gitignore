@@ -1,0 +1,12 @@
+
+Simple NN/mnist_dataset/mnist_test.csv
+Simple NN/mnist_dataset/mnist_train.csv
+Simple_NN_w_PyTorch/MNIST/raw/t10k-images-idx3-ubyte
+Simple_NN_w_PyTorch/MNIST/raw/t10k-images-idx3-ubyte.gz
+Simple_NN_w_PyTorch/MNIST/raw/t10k-labels-idx1-ubyte
+Simple_NN_w_PyTorch/MNIST/raw/t10k-labels-idx1-ubyte.gz
+Simple_NN_w_PyTorch/MNIST/raw/train-images-idx3-ubyte
+*.gz
+Simple_NN_w_PyTorch/MNIST/raw/train-labels-idx1-ubyte
+Simple_NN/mnist_dataset/mnist_train.csv
+Simple_NN/mnist_dataset/mnist_test.csv
